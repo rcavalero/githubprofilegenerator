@@ -1,0 +1,24 @@
+{
+  "name": "githubprofilegenerator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rcavalero/githubprofilegenerator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rcavalero/githubprofilegenerator/issues"
+  },
+  "homepage": "https://github.com/rcavalero/githubprofilegenerator#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "inquirer": "^7.0.1"
+  }
+}
