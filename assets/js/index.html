@@ -1,32 +1,4 @@
-const colors = {
-    green: {
-      wrapperBackground: "#E6E1C3",
-      headerBackground: "#C1C72C",
-      headerColor: "black",
-      photoBorderColor: "#black"
-    },
-    blue: {
-      wrapperBackground: "#5F64D3",
-      headerBackground: "#26175A",
-      headerColor: "white",
-      photoBorderColor: "#73448C"
-    },
-    pink: {
-      wrapperBackground: "#879CDF",
-      headerBackground: "#FF8374",
-      headerColor: "white",
-      photoBorderColor: "#FEE24C"
-    },
-    red: {
-      wrapperBackground: "#DE9967",
-      headerBackground: "#870603",
-      headerColor: "white",
-      photoBorderColor: "white"
-    }
-  };
-  
-  function generateHTML(data) {
-    return `<!DOCTYPE html>
+<!DOCTYPE html>
   <html lang="en">
      <head>
         <meta charset="UTF-8" />
@@ -52,7 +24,7 @@ const colors = {
            height: 100%;
            }
            .wrapper {
-           background-color: ${colors[data.color].wrapperBackground};
+           background-color: #5F64D3;
            padding-top: 100px;
            }
            body {
@@ -94,8 +66,8 @@ const colors = {
            display: flex;
            justify-content: center;
            flex-wrap: wrap;
-           background-color: ${colors[data.color].headerBackground};
-           color: ${colors[data.color].headerColor};
+           background-color: #26175A;
+           color: white;
            padding: 10px;
            width: 95%;
            border-radius: 6px;
@@ -106,7 +78,7 @@ const colors = {
            border-radius: 50%;
            object-fit: cover;
            margin-top: -75px;
-           border: 6px solid ${colors[data.color].photoBorderColor};
+           border: 6px solid #73448C;
            box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
            }
            .photo-header h1, .photo-header h2 {
@@ -149,8 +121,8 @@ const colors = {
            .card {
              padding: 20px;
              border-radius: 6px;
-             background-color: ${colors[data.color].headerBackground};
-             color: ${colors[data.color].headerColor};
+             background-color: #26175A;
+             color: white;
              margin: 20px;
            }
            
@@ -173,23 +145,19 @@ const colors = {
         </style>
         </head>
         <body>
-        <p>this is a test for name ${data.name}</p>
-           <p> user login:  ${data.username}</p>
-           <a href= "${data.image}"></a> 
-        <p> location: ${data.location}</p>
-        <a href="${data.profile}"></a> 
-       <a href="${data.blog}"></a>
-        <p> ${data.bio}</p>
-        <p> repos: ${data.repos}</p>
-        <p> follower: ${data.follower}</p>
+        <p>this is a test for name Robert Cavalero</p>
+           <p> user login:  rcavalero</p>
+           <a href= "https://avatars1.githubusercontent.com/u/57707960?v=4"></a> 
+        <p> location: Seattle, WA</p>
+        <a href="https://github.com/rcavalero"></a> 
+       <a href="https://rcavalero.github.io/portfolio/"></a>
+        <p> I am currently enrolled in a Full-Stack Web Development Boot Camp offered by the University of Washington. </p>
+        <p> repos: 12</p>
+        <p> follower: 0</p>
         <p> stars: 0</p>
-        <p> following: ${data.following}</p>
+        <p> following: 0</p>
 
 
 
 
-        </body>`
-          }
-
-
-          module.exports = {generateHTML};
+        </body>
