@@ -1,32 +1,32 @@
 const colors = {
-    green: {
-      wrapperBackground: "#E6E1C3",
-      headerBackground: "#C1C72C",
-      headerColor: "black",
-      photoBorderColor: "#black"
-    },
-    blue: {
-      wrapperBackground: "#5F64D3",
-      headerBackground: "#26175A",
-      headerColor: "white",
-      photoBorderColor: "#73448C"
-    },
-    pink: {
-      wrapperBackground: "#879CDF",
-      headerBackground: "#FF8374",
-      headerColor: "white",
-      photoBorderColor: "#FEE24C"
-    },
-    red: {
-      wrapperBackground: "#DE9967",
-      headerBackground: "#870603",
-      headerColor: "white",
-      photoBorderColor: "white"
-    }
-  };
-  
-  function generateHTML(data) {
-    return `<!DOCTYPE html>
+  green: {
+    wrapperBackground: "#E6E1C3",
+    headerBackground: "#C1C72C",
+    headerColor: "black",
+    photoBorderColor: "#black"
+  },
+  blue: {
+    wrapperBackground: "#5F64D3",
+    headerBackground: "#26175A",
+    headerColor: "white",
+    photoBorderColor: "#73448C"
+  },
+  pink: {
+    wrapperBackground: "#879CDF",
+    headerBackground: "#FF8374",
+    headerColor: "white",
+    photoBorderColor: "#FEE24C"
+  },
+  red: {
+    wrapperBackground: "#DE9967",
+    headerBackground: "#870603",
+    headerColor: "white",
+    photoBorderColor: "white"
+  }
+};
+
+function generateHTML(data) {
+  return `<!DOCTYPE html>
   <html lang="en">
      <head>
         <meta charset="UTF-8" />
@@ -173,23 +173,72 @@ const colors = {
         </style>
         </head>
         <body>
-        <p>this is a test for name ${data.name}</p>
-           <p> user login:  ${data.username}</p>
-           <a href= "${data.image}"></a> 
-        <p> location: ${data.location}</p>
-        <a href="${data.profile}"></a> 
-       <a href="${data.blog}"></a>
-        <p> ${data.bio}</p>
-        <p> repos: ${data.repos}</p>
-        <p> follower: ${data.follower}</p>
-        <p> stars: 0</p>
-        <p> following: ${data.following}</p>
+        <div class="wrapper">
+        
+           <div class="photo-header">
+            <img src= "${data.image}"> 
+            <h1>Hi!</h1>   
+            <h2>My name is ${data.name}!</h2>
+            <h6>Currently @ ${data.company}</h6>
+            <div class="navbar links-nav">
+              <a class="nav-link "href="http://maps.google.com/?q=${data.location}" target="_blank"><i class="fas fa-location-arrow"></i>&nbsp;${data.location}</a>
+              <a class="nav-link" href="${data.profile}" target="_blank"><i class="fab fa-github"></i>&nbsp;GitHub</a> 
+              <a class="nav-link" href="${data.blog}" target="_blank"><i class="fas fa-rss"></i>&nbsp;Blog</a>
+            </div>
+          </div>
+
+        <main>
+           <div class="container">
+            <div class="row">
+              <div class="col">
+               <h4> ${data.bio}</h4>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col">
+              <div class="card">
+              <div class="card-body">
+              <h3 class="card-title">Public Repositories</h3>
+                <h4 class="card-text">${data.repos}</h4>
+              </div>
+              </div>
+              </div>
+              <div class="col">
+              <div class="card">
+              <div class="card-body">
+              <h3 class="card-title">Followers</h3>
+                <h4 class="card-text">${data.follower}</h4>
+              </div>
+              </div>
+              </div>
+              </div>
+
+            <div class="row">
+              <div class="col">
+              <div class="card">
+              <div class="card-body">
+              <h3 class="card-title">Stars</h3>
+                <h4 class="card-text">0</h4>
+              </div>
+              </div>
+              </div>
+              <div class="col">
+              <div class="card">
+              <div class="card-body">
+              <h3 class="card-title">Following</h3>
+              <h4 class="card-text">${data.following}</h4>
+              </div>
+              </div>
+              </div>
+            </div>
+
+          </div>
+           </main>
+           <div class="wrapper"></div>
+           </div>
+           </body>`
+}
 
 
-
-
-        </body>`
-          }
-
-
-          module.exports = {generateHTML};
+module.exports = { generateHTML };

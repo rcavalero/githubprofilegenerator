@@ -19,6 +19,7 @@
   "homepage": "https://github.com/rcavalero/githubprofilegenerator#readme",
   "dependencies": {
     "axios": "^0.19.0",
+    "electron-html-to": "^2.6.0",
     "inquirer": "^7.0.1"
   }
 }
