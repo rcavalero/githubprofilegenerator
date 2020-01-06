@@ -38,6 +38,8 @@ async function getData() {
 
         const url = `/${userAnswers.username}`
         gs(url, function(err, scraperData) {
+            // console.log(gitData);
+            
 
             data = {
                 color: userAnswers.color,
@@ -45,6 +47,7 @@ async function getData() {
                 image: scraperData.avatar,
                 name: scraperData.name,
                 company: scraperData.worksfor,
+                // company: gitData.company,
                 location: gitData.data.location,
                 profile: gitData.data.html_url,
                 blog: gitData.data.blog,
