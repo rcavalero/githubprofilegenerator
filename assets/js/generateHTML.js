@@ -214,12 +214,12 @@ function generateHTML(data) {
               </div>
               </div>
 
-            <div class="row">
+              <div class="row">
               <div class="col">
               <div class="card">
               <div class="card-body">
               <h3 class="card-title">Stars</h3>
-                <h4 class="card-text">0</h4>
+                <h4 class="card-text">${data.stars}</h4>
               </div>
               </div>
               </div>
