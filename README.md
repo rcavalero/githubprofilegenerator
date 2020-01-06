@@ -9,7 +9,7 @@ The product of this application is seen here:
 
 ## Built With
 
-* This application uses NodeJS and inquier, axios & pdfCrowd NPM modules.
+* This application uses NodeJS and inquirer, axios & pdfCrowd NPM modules.
 
 ## Authors
 
