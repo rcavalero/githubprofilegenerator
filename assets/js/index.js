@@ -1,19 +1,6 @@
-
-// Minimum Requirements
-// The application generates a PDF resume from the user provided GitHub profile.
-
-// Submission Requirements
-// An animated GIF demonstrating the app functionality
-// A generated PDF of your GitHub profile
-// The URL of the GitHub repository
-
-
 // *** Todo List  ***
-
-// revise code to use variables and functions in sample code
 // create animated gif of the app functionality
 
-// *** coding starts here ***
 const fs = require("fs");
 const util = require("util");
 const axios = require("axios");
@@ -23,12 +10,10 @@ const writeFileAsync = util.promisify(fs.writeFile);
 const gs = require('github-scraper');
 const pdfcrowd = require("pdfcrowd");
 
-
 let data = {};
 
-
 async function getData() {
-// this prompts the user for username and color choice then retreives data using a couple of queiries against github APIs
+    // this prompts the user for username and color choice then retreives data using a couple of queiries against github APIs
     try {
         const userAnswers = await
             inquirer.prompt(questions);
@@ -37,9 +22,9 @@ async function getData() {
         const gitData = await axios.get(queryUrl);
 
         const url = `/${userAnswers.username}`
-        gs(url, function(err, scraperData) {
+        gs(url, function (err, scraperData) {
             // console.log(gitData);
-            
+
 
             data = {
                 color: userAnswers.color,
@@ -47,7 +32,6 @@ async function getData() {
                 image: scraperData.avatar,
                 name: scraperData.name,
                 company: scraperData.worksfor,
-                // company: gitData.company,
                 location: gitData.data.location,
                 profile: gitData.data.html_url,
                 blog: gitData.data.blog,
@@ -58,39 +42,24 @@ async function getData() {
                 following: scraperData.following
             }
 
-            // this creates the index.html  file using the above data the format from generateHTML.js
-        const html = generateHTML.generateHTML(data);
-        writeFileAsync("../../index.html", html);
+            // this creates the index.html  file using the above data and the format from generateHTML.js
+            const html = generateHTML.generateHTML(data);
+            const htmlFile = "../../index.html";
 
-        // this creates a PDF document using the html string above
-        var client = new pdfcrowd.HtmlToPdfClient("rcavalero", "bbfee87a0727daaf33389b6a07838172");
-        try {
-            client.setPageWidth("8.27in");
-            client.setScaleFactor(75)
-            client.setPrintPageRange("1")
-        } catch(why) {
-            console.error("Pdfcrowd Error: " + why);
-            console.error("Pdfcrowd Error Code: " + why.getCode());
-            console.error("Pdfcrowd Error Message: " + why.getMessage());
-            process.exit(1);
-        }
+            writeToFile(htmlFile, html);
 
-        client.convertStringToFile(
-            html,
-            "../images/profile.pdf",
-            function(err, fileName) {
-                if (err) return console.error("Pdfcrowd Error: " + err);
-                console.log("Success: the file was created " + fileName);
-                
-            });
-        }); 
+            // this creates a PDF document using the html string above
+            const pdfFile = "../images/profile.pdf";
+            createPDF(pdfFile, html);
+
+        });
     }
-        catch (err) {
-            console.log(err);
+    catch (err) {
+        console.log(err);
     };
 };
 
-
+// questions used in inquirer.propmt (getdata)
 const questions = [
     {
         type: "input",
@@ -103,17 +72,38 @@ const questions = [
         choices: ["green", "blue", "pink", "red"],
         name: "color"
     }
-
 ];
 
+// creates the HTML file
 function writeToFile(fileName, data) {
+    writeFileAsync(fileName, data);
+}
 
+// creates the PDF file
+async function createPDF(fileName, data) {
+    var client = new pdfcrowd.HtmlToPdfClient("rcavalero", "bbfee87a0727daaf33389b6a07838172");
+    try {
+        client.setPageWidth("8.27in");
+        client.setScaleFactor(75)
+        client.setPrintPageRange("1")
+    } catch (why) {
+        console.error("Pdfcrowd Error: " + why);
+        console.error("Pdfcrowd Error Code: " + why.getCode());
+        console.error("Pdfcrowd Error Message: " + why.getMessage());
+        process.exit(1);
+    }
+
+    client.convertStringToFile(
+        data,
+        fileName,
+        function (err, fileName) {
+            if (err) return console.error("Pdfcrowd Error: " + err);
+            console.log("Success: the file was created " + fileName);
+        });
 }
 
 function init() {
     getData();
-    // writeFile();
 }
 
- init();
-
+init();
